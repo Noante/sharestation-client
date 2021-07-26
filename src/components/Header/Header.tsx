@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Avatar from "components/Avatar";
+import user from "__MOCK__USER";
 
 const Wrapper = styled.header`
   width: 100%;
@@ -25,11 +26,6 @@ const Name = styled.abbr`
   font-size: 12px;
   line-height: 15px;
 `;
-
-const user = {
-  name: "Ana Carolina Barreto",
-  profilePicture: "https://via.placeholder.com/40",
-};
 
 /**
  *
