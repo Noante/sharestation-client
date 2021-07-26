@@ -18,12 +18,14 @@
   "Create a React Function Component": {
     "prefix": "rfc",
     "body": [
-      "type Params = {}",
+      "import styled from 'styled-components';",
+      "",
+      "type Props = {}",
       "",
       "/**",
       " * ${2:what does this component do?}",
       " */",
-      "function ${1:ComponentName}({  }: Params) {",
+      "function ${1:ComponentName}({  }: Props) {",
       "\treturn (",
       "\t\t$0",
       "\t);",
