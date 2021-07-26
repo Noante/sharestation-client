@@ -13,6 +13,7 @@ const Button = styled.button`
   line-height: 1.1875rem;
   font-weight: 700;
   border: none;
+  cursor: pointer;
 `;
 
 export default Button;
