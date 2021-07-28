@@ -2,3 +2,13 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
+
+:root {
+  --primary: #283048;
+
+  /* Sidebar */
+  --sidebar-width: 280px;
+
+  /* Folder */
+  --folder-bgcolor: #626976;
+}
