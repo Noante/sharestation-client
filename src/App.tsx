@@ -1,10 +1,11 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { HOME } from "./router/routes";
+import { HOME, FILE, NOT_FOUND } from "./router/routes";
 import Home from "./views/Home/Home";
+import File from "./views/File/File";
+import NotFound from "./views/NotFound/NotFound";
 
 /**
- *
- * @returns
+ * App's main router.
  */
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Switch>
         {/* // TODO: use lazy loading */}
         <Route exact path={HOME} component={Home} />
+        <Route exact path={FILE} component={File} />
+        <Route path={NOT_FOUND} component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
