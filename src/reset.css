@@ -93,6 +93,11 @@ figure {
   margin: 0;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* remember to define focus styles! */
 :focus {
   outline: 0;
