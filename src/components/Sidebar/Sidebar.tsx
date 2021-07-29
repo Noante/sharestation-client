@@ -95,7 +95,10 @@ function Sidebar() {
       <Meter
         max={user.storage.maxCapacity}
         currentValue={user.storage.currentUsage}
-        minLabel="0 GB"
+        minLabel={convertStorageUnit({
+          to: "GB",
+          value: user.storage.currentUsage,
+        })}
         maxLabel={convertStorageUnit({
           to: "GB",
           value: user.storage.maxCapacity,
