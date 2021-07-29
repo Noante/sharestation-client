@@ -1,29 +1,37 @@
 import { EmptyFeedback } from "components/FeedbackMessage";
-import Header from "components/Header";
 import Button from "components/Button";
-import styled from "styled-components";
-import Sidebar from "components/Sidebar";
-
-const Wrapper = styled.div``;
-
-const Content = styled.main``;
+import NavigationContext from "components/NavigationContext";
+import Folder from "components/Folder";
+import useDocuments from "./hooks/useDocuments";
+import PrivateTemplate from "templates/PrivateTemplate";
 
 /**
- *
+ * Main page on opening the application. Responsible for
+ * showing all user folders.
  */
 function Home() {
+  const { documents, hasDocuments, loading } = useDocuments();
+
+  // TODO: add placeholder
+  if (loading) return null;
+
+  if (!hasDocuments)
+    return (
+      <PrivateTemplate>
+        <EmptyFeedback>
+          <Button>Enviar arquivo</Button>
+        </EmptyFeedback>
+      </PrivateTemplate>
+    );
+
   return (
-    <>
-      <Sidebar />
-      <Wrapper>
-        <Header />
-        <Content>
-          <EmptyFeedback>
-            <Button>Enviar arquivo</Button>
-          </EmptyFeedback>
-        </Content>
-      </Wrapper>
-    </>
+    <PrivateTemplate>
+      <NavigationContext title="Meus arquivos">
+        {documents.map(({ id, title }) => (
+          <Folder key={id} id={id} title={title} />
+        ))}
+      </NavigationContext>
+    </PrivateTemplate>
   );
 }
 
