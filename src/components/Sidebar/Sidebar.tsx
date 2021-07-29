@@ -21,7 +21,7 @@ const Title = styled.b`
   font-size: 1.125rem;
   line-height: 1.375rem;
   font-weight: 700;
-  color: #283048;
+  color: var(--primary);
 `;
 
 const Version = styled.span`
@@ -45,8 +45,8 @@ const Wrapper = styled.aside`
   flex-direction: column;
   position: absolute;
   z-index: 1;
-  width: 280px;
-  min-width: 280px;
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
   height: 100vh;
   backdrop-filter: blur(5px);
   box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.02);

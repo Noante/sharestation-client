@@ -8,13 +8,13 @@ const Bar = styled.meter`
   position: relative;
   background-color: #fff;
   &::-moz-meter-bar {
-    background: #283048;
+    background: var(--primary);
     border-radius: 10px;
   }
 `;
 
 const Label = styled.span`
-  color: #283048;
+  color: var(--primary);
   font-size: 0.8125rem;
   line-height: 1rem;
 `;

@@ -7,7 +7,7 @@ const Wrapper = styled.header`
   min-width: 100%;
   height: 70px;
   min-height: 70px;
-  background-image: linear-gradient(90deg, #283048 0%, #859398 100%);
+  background-image: linear-gradient(90deg, var(--primary) 0%, #859398 100%);
   padding: 15px 25px;
   display: flex;
   justify-content: flex-end;
