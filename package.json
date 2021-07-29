@@ -1,6 +1,7 @@
 {
   "name": "sharestation-client",
   "version": "1.0.0",
+  "product": "Sharestation",
   "private": true,
   "dependencies": {
     "@styled-icons/material": "^10.34.0",
