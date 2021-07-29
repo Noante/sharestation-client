@@ -28,7 +28,8 @@ const Name = styled.abbr`
 `;
 
 /**
- *
+ * Header containg the user's profile picture and common
+ * for all other pages.
  */
 function Header() {
   return (
