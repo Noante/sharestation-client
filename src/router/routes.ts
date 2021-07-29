@@ -3,9 +3,9 @@ export const RECENTS = `${HOME}recents`;
 export const RECOVERY = `${HOME}recovery`;
 export const STORAGE = `${HOME}storage`;
 
-// Files
-export const FILES = `${HOME}files`;
-export const FILE = `${FILES}/:fileId`;
+// Documents
+export const DOCUMENTS = `${HOME}documents`;
+export const DOCUMENT = `${DOCUMENTS}/:documentId`;
 
 // Fallbacks
 export const NOT_FOUND = "*";
