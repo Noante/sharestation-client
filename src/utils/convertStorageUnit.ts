@@ -10,7 +10,7 @@ type Params = {
 const convertStorageUnit = ({ to, value }: Params) => {
   switch (to) {
     case "GB":
-      return `${value / 1024} GB`;
+      return `${Math.round(value / 1024)} GB`;
     default:
       throw new Error("Invalid 'from' argument.");
   }
