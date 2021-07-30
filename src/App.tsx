@@ -1,8 +1,10 @@
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { HOME, DOCUMENT, NOT_FOUND } from "./router/routes";
-import Home from "./views/Home/Home";
-import Document from "./views/Document/Document";
-import NotFound from "./views/NotFound/NotFound";
+
+const Home = lazy(() => import("./views/Home"));
+const Document = lazy(() => import("./views/Document"));
+const NotFound = lazy(() => import("./views/NotFound"));
 
 /**
  * App's main router.
@@ -10,12 +12,13 @@ import NotFound from "./views/NotFound/NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        {/* // TODO: use lazy loading */}
-        <Route exact path={HOME} component={Home} />
-        <Route exact path={DOCUMENT} component={Document} />
-        <Route path={NOT_FOUND} component={NotFound} />
-      </Switch>
+      <Suspense fallback={<span>carregando...</span>}>
+        <Switch>
+          <Route exact path={HOME} component={Home} />
+          <Route exact path={DOCUMENT} component={Document} />
+          <Route path={NOT_FOUND} component={NotFound} />
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 }
