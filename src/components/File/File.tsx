@@ -50,7 +50,7 @@ function File({ name }: Props) {
     mp4: <Movie />,
     jpg: <Image />,
     other: <MoreHoriz />,
-  }[getFileExtension(name)];
+  }[getFileExtension(name) ?? "other"];
 
   return (
     <Wrapper>
