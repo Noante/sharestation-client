@@ -8,7 +8,7 @@ const Icon = styled(_Folder)`
 `;
 
 const Caption = styled.figcaption`
-  color: #5f6a77;
+  color: var(--secondary);
   font-size: 0.875rem;
   line-height: 1.125rem;
   font-weight: 600;
