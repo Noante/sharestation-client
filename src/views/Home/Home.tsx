@@ -4,6 +4,8 @@ import NavigationContext from "components/NavigationContext";
 import Folder from "components/Folder";
 import useDocuments from "./hooks/useDocuments";
 import PrivateTemplate from "templates/PrivateTemplate";
+import File from "components/File";
+import selectFiles from "select-files";
 
 /**
  * Main page on opening the application. Responsible for
@@ -12,6 +14,9 @@ import PrivateTemplate from "templates/PrivateTemplate";
 function Home() {
   const { documents, hasDocuments, loading } = useDocuments();
 
+  const handleFileSelection = () =>
+    selectFiles({ multiple: true }).then(console.log);
+
   // TODO: add placeholder
   if (loading) return null;
 
@@ -19,7 +24,7 @@ function Home() {
     return (
       <PrivateTemplate>
         <EmptyFeedback>
-          <Button>Enviar arquivo</Button>
+          <Button onClick={handleFileSelection}>Enviar arquivo</Button>
         </EmptyFeedback>
       </PrivateTemplate>
     );
@@ -27,9 +32,13 @@ function Home() {
   return (
     <PrivateTemplate>
       <NavigationContext title="Meus arquivos">
-        {documents.map(({ id, title }) => (
-          <Folder key={id} id={id} title={title} />
-        ))}
+        {documents.map(({ id, name, isFolder }) =>
+          isFolder ? (
+            <Folder key={id} id={id} name={name} />
+          ) : (
+            <File key={id} name={name} />
+          )
+        )}
       </NavigationContext>
     </PrivateTemplate>
   );

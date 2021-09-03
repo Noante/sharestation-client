@@ -30,6 +30,10 @@ const Backdrop = styled.figure`
 const Caption = styled.figcaption`
   position: absolute;
   top: calc(100% + 5px);
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const Wrapper = styled.div``;
@@ -49,6 +53,7 @@ function File({ name }: Props) {
     ppt: <Slideshow />,
     mp4: <Movie />,
     jpg: <Image />,
+    png: <Image />,
     other: <MoreHoriz />,
   }[getFileExtension(name) ?? "other"];
 

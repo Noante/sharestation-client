@@ -7,6 +7,19 @@ const files = [
   { id: "uuid-01", name: "macacos pelados.jpg" },
   { id: "uuid-02", name: "gemidos do macaco pelado.mp3" },
   { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
 ];
 
 /**

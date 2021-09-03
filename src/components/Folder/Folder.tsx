@@ -12,6 +12,10 @@ const Caption = styled.figcaption`
   font-size: 0.875rem;
   line-height: 1.125rem;
   font-weight: 600;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const Content = styled.figure`
@@ -24,18 +28,18 @@ const Wrapper = styled.a``;
 
 type Props = {
   id: string;
-  title: string;
+  name: string;
 };
 
 /**
  * Represents an available folder to user go into.
  */
-function Folder({ title, id }: Props) {
+function Folder({ name, id }: Props) {
   return (
     <Wrapper href={generatePath(DOCUMENT, { documentId: id })}>
       <Content>
         <Icon />
-        <Caption>{title}</Caption>
+        <Caption>{name}</Caption>
       </Content>
     </Wrapper>
   );
