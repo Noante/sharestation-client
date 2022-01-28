@@ -36,12 +36,14 @@ import { io } from "socket.io-client";
 //     });
 //   }, []);
 
+const SOCKET_HOST: any = process.env.SOCKET_HOST;
+
 /**
  *
  * @returns
  */
 function useDocuments() {
-	const [socket, setSocket] = useState(io("http://localhost:3004", {
+	const [socket, setSocket] = useState(io(SOCKET_HOST, {
 		reconnection: true,
 		auth: {
 			token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQG1haWwuY29tIiwiaWF0IjoxNjMwODYwNTY3LCJleHAiOjE2MzA4NjA4Njd9.w2iFV47QRkoaJ_cxcbARzXhKkEXnbr2hfQR5B5Y6-bM",
