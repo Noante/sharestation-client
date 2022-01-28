@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
 // socket.auth = { username: "xguhkaa" };
@@ -36,7 +36,7 @@ import { io } from "socket.io-client";
 //     });
 //   }, []);
 
-const SOCKET_HOST: any = process.env.SOCKET_HOST;
+const SOCKET_HOST: any = process.env.SOCKET_HOST || "http://localhost:3004";
 
 /**
  *
@@ -46,37 +46,60 @@ function useDocuments() {
 	const [socket, setSocket] = useState(io(SOCKET_HOST, {
 		reconnection: true,
 		auth: {
-			token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQG1haWwuY29tIiwiaWF0IjoxNjMwODYwNTY3LCJleHAiOjE2MzA4NjA4Njd9.w2iFV47QRkoaJ_cxcbARzXhKkEXnbr2hfQR5B5Y6-bM",
+			token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQG1haWwuY29tIiwiaWF0IjoxNjQzMzM1MDkwLCJleHAiOjE2NDMzMzUzOTB9.XyE8I_SAv3JbSmlhp8HaaPLuBA5uGFcH6lw4LeOOP0w",
 			username: "reactApp",
 			type: "client"
 		}
 	}));
 
 	const [users, setUsers] = useState([]);
-    const [host, setHost] = useState<any>({});
-    const [files, setFiles] = useState([]);
+    const [host, setHost] = useState<any>({
+		username: "clientNode1"
+	});
 	const [documents, setDocuments] = useState([]);
 
 	useEffect(() => {
-		if(Object.keys(host).length > 0){
-            socket.emit("host:listDir", {
-                path: "/Users/caiomorais/Documents/Teste2/",
-                from: socket.id,
-                to: host.userID
+		console.log(Object.keys(socket).length);
+		
+		if(Object.keys(socket).length > 0){
+            // socket.auth = {username: "reactApp"};
+            loadFiles();
+            loadUsers();
+            loadDownloadedFile();
+
+            socket.emit("server:listHosts", {
+                hosts: [
+                    "clientNode1",
+                    "clientNode2"
+                ]
             });
 		}
+    }, [socket]);
+
+	useEffect(() => {
+		socket.emit("host:listDir", {
+			path: "/Users/caiomorais/Documents/Teste2/",
+			from: socket.id,
+			to: host.userID
+		});
     }, [host]);
 	
 	const loadFiles = () => {
-		socket.on("client:listDir", (data)=>{
-            setDocuments(data.message);
-		});
-    }
+		socket.on("client:listDir", (data: any)=>{
+			const documentsList = data.message.map((message: any, i: number) => ({
+				id: `${i}`,
+				name: message.name,
+				isFolder: message.isDir
+			}));
+			setDocuments(documentsList);
+		})
+	}
     
     const loadUsers = () => {
 		socket.on("client:listHosts", users => {
             if(users.length > 0)
-                setHost(users[0])
+				setHost(users[0])
+			console.log(users)
             setUsers(users);
         });
     }
