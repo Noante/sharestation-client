@@ -12,7 +12,7 @@ import selectFiles from "select-files";
  * showing all user folders.
  */
 function Home() {
-  const { documents, hasDocuments, loading, listDir } = useDocuments();
+  const { documents, hasDocuments, loading, listDir, handleDownload } = useDocuments();
 
   const handleFileSelection = () =>
     selectFiles({ multiple: true }).then(console.log);
@@ -36,7 +36,9 @@ function Home() {
           isFolder ? (
             <Folder key={id} id={id} name={name} />
           ) : (
-            <File key={id} name={name} />
+            <div onClick={() => handleDownload({name})}>
+                <File key={id} name={name}/>
+            </div>
           )
         )}
       </NavigationContext>

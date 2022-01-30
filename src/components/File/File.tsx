@@ -13,6 +13,7 @@ import getFileNameWithoutExtension from "utils/getFileNameWithoutExtension";
 
 const Backdrop = styled.figure`
   position: relative;
+  cursor: pointer;
   text-align: center;
   display: flex;
   width: 96px;

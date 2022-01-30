@@ -105,7 +105,6 @@ function useDocuments() {
     }
 
     const handleDownload = (document: any) => {
-        window.alert(document.name);
 		socket.emit("host:downloadFile", {
             path: "/Users/caiomorais/Documents/Teste2/",
             filename: document.name,
