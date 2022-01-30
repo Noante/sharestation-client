@@ -1,40 +1,6 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-
-// socket.auth = { username: "xguhkaa" };
-
-// const [documents, setDocuments] = useState([]);
-//   const [users, setUsers] = useState<
-//     Record<"username" | "userID", string>[] | null
-//   >(null);
-
-//   useEffect(() => {
-//     socket.on("user:listUsers", (users) => {
-//       setUsers(users);
-//     });
-//   }, []);
-
-//   useEffect(() => {
-//     if (users) {
-//       socket.emit("host:listDir", {
-//         path: "/Users/caiomorais/Documents/Teste2/",
-//         to: users[1].userID ?? "",
-//       });
-//     }
-//   }, [users]);
-
-//   useEffect(() => {
-//     socket.on("client:listDir", (documents) => {
-//       setDocuments(
-//         // @ts-ignore
-//         documents.message.map(({ isDir, name }, id) => ({
-//           isFolder: isDir,
-//           id,
-//           name,
-//         }))
-//       );
-//     });
-//   }, []);
+import axios from "axios";
 
 const SOCKET_HOST: any = process.env.SOCKET_HOST || "http://localhost:3004";
 
@@ -43,26 +9,40 @@ const SOCKET_HOST: any = process.env.SOCKET_HOST || "http://localhost:3004";
  * @returns
  */
 function useDocuments() {
-	const [socket, setSocket] = useState(io(SOCKET_HOST, {
-		reconnection: true,
-		auth: {
-			token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQG1haWwuY29tIiwiaWF0IjoxNjQzMzM1MDkwLCJleHAiOjE2NDMzMzUzOTB9.XyE8I_SAv3JbSmlhp8HaaPLuBA5uGFcH6lw4LeOOP0w",
-			username: "reactApp",
-			type: "client"
-		}
-	}));
+	const [socket, setSocket] = useState<any>();
 
+    const [token, setToken] = useState<string>("");
 	const [users, setUsers] = useState([]);
     const [host, setHost] = useState<any>({
 		username: "clientNode1"
 	});
-	const [documents, setDocuments] = useState([]);
+    const [documents, setDocuments] = useState([]);
+    
+    useEffect(() => {
+        axios.post("http://localhost:3000/api/auth", {
+            email: "teste@mail.com",
+            password: "12345678"
+        }).then((response) => {
+            setToken(response.data.token);
+        }).catch((error) => {
+            console.error("An error has occurred on fetch auth API");
+            console.error(error);
+        })
+    }, [])
 
-	useEffect(() => {
-		console.log(Object.keys(socket).length);
-		
-		if(Object.keys(socket).length > 0){
-            // socket.auth = {username: "reactApp"};
+    useEffect(() => {
+        token && setSocket(io(SOCKET_HOST, {
+            reconnection: true,
+            auth: {
+                token: token,
+                username: "reactApp",
+                type: "client"
+            }
+        }))
+    }, [token])
+
+	useEffect(() => {		
+		if(socket && Object.keys(socket).length > 0){
             loadFiles();
             loadUsers();
             loadDownloadedFile();
@@ -77,7 +57,7 @@ function useDocuments() {
     }, [socket]);
 
 	useEffect(() => {
-		socket.emit("host:listDir", {
+		socket && host && socket.emit("host:listDir", {
 			path: "/Users/caiomorais/Documents/Teste2/",
 			from: socket.id,
 			to: host.userID
@@ -96,17 +76,16 @@ function useDocuments() {
 	}
     
     const loadUsers = () => {
-		socket.on("client:listHosts", users => {
+		socket.on("client:listHosts", (users: any) => {
             if(users.length > 0)
 				setHost(users[0])
-			console.log(users)
             setUsers(users);
         });
     }
 
     const loadDownloadedFile = () => {
         const chunks: any = [];
-		socket.on("client:downloadFile", data => {
+		socket.on("client:downloadFile", (data: any) => {
             if(data.status === "in_progress"){
                 chunks.push(data.chunk);
             } else {
