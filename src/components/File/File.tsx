@@ -53,6 +53,7 @@ function File({ name }: Props) {
     ppt: <Slideshow />,
     mp4: <Movie />,
     jpg: <Image />,
+    jpeg: <Image />,
     png: <Image />,
     other: <MoreHoriz />,
   }[getFileExtension(name) ?? "other"];

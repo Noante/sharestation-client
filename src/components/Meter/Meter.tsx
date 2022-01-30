@@ -48,7 +48,7 @@ function Meter({ currentValue, max, maxLabel, minLabel }: Props) {
   return (
     <Wrapper>
       <Bar max={max} value={currentValue}>
-        em {currentValue}/{max}
+        {/* em {currentValue}/{max} */}
       </Bar>
       <Labels>
         <Label>{minLabel}</Label>
