@@ -12,7 +12,7 @@ import selectFiles from "select-files";
  * showing all user folders.
  */
 function Home() {
-  const { documents, hasDocuments, loading } = useDocuments();
+  const { documents, hasDocuments, loading, listDir } = useDocuments();
 
   const handleFileSelection = () =>
     selectFiles({ multiple: true }).then(console.log);
@@ -31,7 +31,7 @@ function Home() {
 
   return (
     <PrivateTemplate>
-      <NavigationContext title="Meus arquivos">
+      <NavigationContext title="Meus arquivos" listDir={listDir}>
         {documents.map(({ id, name, isFolder }) =>
           isFolder ? (
             <Folder key={id} id={id} name={name} />

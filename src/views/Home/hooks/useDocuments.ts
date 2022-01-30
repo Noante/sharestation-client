@@ -57,12 +57,16 @@ function useDocuments() {
     }, [socket]);
 
 	useEffect(() => {
-		socket && host && socket.emit("host:listDir", {
+		socket && host && listDir()
+    }, [host]);
+
+    const listDir = () => {
+        socket.emit("host:listDir", {
 			path: "/Users/caiomorais/Documents/Teste2/",
 			from: socket.id,
 			to: host.userID
 		});
-    }, [host]);
+    }
 	
 	const loadFiles = () => {
 		socket.on("client:listDir", (data: any)=>{
@@ -70,7 +74,7 @@ function useDocuments() {
 				id: `${i}`,
 				name: message.name,
 				isFolder: message.isDir
-			}));
+            }));
 			setDocuments(documentsList);
 		})
 	}
@@ -124,7 +128,8 @@ function useDocuments() {
     hasDocuments,
 	documents,
 	loadFiles,
-	loadUsers,
+    loadUsers,
+    listDir,
 	loadDownloadedFile,
 	handleDownload
   };
