@@ -2,7 +2,7 @@ import _Divider from "components/Divider";
 import styled from "styled-components";
 import _Menu, { Item } from "components/Menu";
 import { version } from "../../../package.json";
-import convertStorageUnit from "utils/convertStorageUnit";
+import convertStorageUnit from "utils/convertStorageUnit/convertStorageUnit";
 import {
   Folder,
   Schedule,
