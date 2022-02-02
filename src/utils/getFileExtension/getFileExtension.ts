@@ -8,7 +8,9 @@
  * console.log(noExtension) // null
  * ```
  */
-const getFileExtension = (fileName: string) =>
-  fileName.split(".").pop() ?? null;
+const getFileExtension = (fileName: string) => {
+  const extension = fileName.split(".").pop();
+  return extension === fileName ? null : extension;
+};
 
 export default getFileExtension;

@@ -4,7 +4,7 @@
  * ```
  * const fileName = getFileNameWithoutExtension('identity.pdf');
  * const fileNameWithDots = getFileNameWithoutExtension('identity.new.pdf');
- * const fileNameWIthoutExtension = getFileNameWithoutExtension('identity');
+ * const fileNameWithoutExtension = getFileNameWithoutExtension('identity');
  *
  * console.log(fileName); // "identity"
  * console.log(fileNameWithDots); // "identity.new"

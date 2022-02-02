@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import getFileExtension from "utils/getFileExtension";
+import getFileExtension from "utils/getFileExtension/getFileExtension";
 import fileBackdropUrl from "./assets/fileBackdrop.png";
 import {
   Slideshow,
@@ -9,7 +9,7 @@ import {
   MoreHoriz,
 } from "@styled-icons/material-outlined";
 import { StyledIconBase } from "@styled-icons/styled-icon";
-import getFileNameWithoutExtension from "utils/getFileNameWithoutExtension";
+import getFileNameWithoutExtension from "utils/getFileNameWithoutExtension/getFileNameWithoutExtension";
 
 const Backdrop = styled.figure`
   position: relative;
