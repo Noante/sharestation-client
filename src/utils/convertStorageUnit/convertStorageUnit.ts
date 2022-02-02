@@ -1,5 +1,8 @@
 type Params = {
+  /** unit to be formatted. */
   to: "GB";
+
+  /** value to be formatted in kilobytes. */
   value: number;
 };
 
