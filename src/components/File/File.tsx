@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import getFileExtension from "utils/getFileExtension";
+import getFileExtension from "utils/getFileExtension/getFileExtension";
 import fileBackdropUrl from "./assets/fileBackdrop.png";
 import {
   Slideshow,
