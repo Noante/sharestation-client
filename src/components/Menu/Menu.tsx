@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Item from "./components/Item";
 
 type Props = {
   children: ReactNode;
@@ -15,5 +16,7 @@ function Menu({ children, className }: Props) {
     </nav>
   );
 }
+
+Menu.Item = Item;
 
 export default Menu;

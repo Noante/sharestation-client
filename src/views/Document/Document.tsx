@@ -1,5 +1,4 @@
-import NavigationContext from "components/NavigationContext";
-import File from "components/File";
+import { NavigationContext, File } from "components";
 import PrivateTemplate from "templates/PrivateTemplate";
 
 const files = [

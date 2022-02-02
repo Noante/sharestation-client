@@ -1,3 +1,1 @@
-export { default } from "./FeedbackMessage";
-
-export { default as EmptyFeedback } from "./components/EmptyFeedback";
+export { default as FeedbackMessage } from "./FeedbackMessage";
