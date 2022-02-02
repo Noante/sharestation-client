@@ -12,7 +12,7 @@ const convertStorageUnit = ({ to, value }: Params) => {
     case "GB":
       return `${Math.round(value / 1024)} GB`;
     default:
-      throw new Error("Invalid 'from' argument.");
+      throw new Error("Invalid 'to' argument.");
   }
 };
 
