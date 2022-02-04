@@ -1,15 +1,7 @@
+@import "./customProperties.css";
+
 * {
   box-sizing: border-box;
-  font-family: Quicksand, -apple-system, BlinkMacSystemFont, Montserrat, sans-serif;
-}
-
-:root {
-  --primary: #283048;
-  --secondary: #5f6a77;
-
-  /* Sidebar */
-  --sidebar-width: 280px;
-
-  /* Folder */
-  --folder-bgcolor: #626976;
+  font-family: Quicksand, -apple-system, BlinkMacSystemFont, Montserrat,
+    sans-serif;
 }
