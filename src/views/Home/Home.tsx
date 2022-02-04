@@ -3,10 +3,9 @@ import {
   FeedbackMessage,
   File,
   Folder,
-  NavigationContext,
+  NavigationContext
 } from "components";
 import useDocuments from "./hooks/useDocuments";
-import { PrivateTemplate } from "templates";
 import selectFiles from "select-files";
 
 /**
@@ -24,25 +23,21 @@ function Home() {
 
   if (!hasDocuments)
     return (
-      <PrivateTemplate>
-        <FeedbackMessage.EmptyFeedback>
-          <Button onClick={handleFileSelection}>Enviar arquivo</Button>
-        </FeedbackMessage.EmptyFeedback>
-      </PrivateTemplate>
+      <FeedbackMessage.EmptyFeedback>
+        <Button onClick={handleFileSelection}>Enviar arquivo</Button>
+      </FeedbackMessage.EmptyFeedback>
     );
 
   return (
-    <PrivateTemplate>
-      <NavigationContext title="Meus arquivos">
-        {documents.map(({ id, name, isFolder }) =>
-          isFolder ? (
-            <Folder key={id} id={id} name={name} />
-          ) : (
-            <File key={id} name={name} />
-          )
-        )}
-      </NavigationContext>
-    </PrivateTemplate>
+    <NavigationContext title="Meus arquivos">
+      {documents.map(({ id, name, isFolder }) =>
+        isFolder ? (
+          <Folder key={id} id={id} name={name} />
+        ) : (
+          <File key={id} name={name} />
+        )
+      )}
+    </NavigationContext>
   );
 }
 

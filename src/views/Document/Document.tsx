@@ -1,5 +1,4 @@
 import { NavigationContext, File } from "components";
-import { PrivateTemplate } from "templates";
 
 const files = [
   { id: "uuid-00", name: "Estudos dos macacos pelados.ppt" },
@@ -18,7 +17,7 @@ const files = [
   { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
   { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
   { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
-  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" },
+  { id: "uuid-03", name: "reprodução dos macacos pelados.mp4" }
 ];
 
 /**
@@ -27,13 +26,11 @@ const files = [
  */
 function Document() {
   return (
-    <PrivateTemplate>
-      <NavigationContext title="Meus arquivos">
-        {files.map(({ id, name }) => (
-          <File key={id} name={name} />
-        ))}
-      </NavigationContext>
-    </PrivateTemplate>
+    <NavigationContext title="Meus arquivos">
+      {files.map(({ id, name }) => (
+        <File key={id} name={name} />
+      ))}
+    </NavigationContext>
   );
 }
 
