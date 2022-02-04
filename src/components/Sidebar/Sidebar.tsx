@@ -1,7 +1,7 @@
 import { Divider as _Divider, Menu as _Menu, Meter } from "components";
 import styled from "styled-components";
 import { version } from "../../../package.json";
-import convertStorageUnit from "utils/convertStorageUnit/convertStorageUnit";
+import { convertStorageUnit } from "utils";
 import {
   Folder,
   Schedule,

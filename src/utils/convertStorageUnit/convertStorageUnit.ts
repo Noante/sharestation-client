@@ -10,7 +10,7 @@ type Params = {
  * Convert some storage unit to another.
  * @returns {string} Converted number to its nearest rounded integer.
  */
-const convertStorageUnit = ({ to, value }: Params) => {
+export const convertStorageUnit = ({ to, value }: Params) => {
   switch (to) {
     case "GB":
       return `${Math.round(value / 1024)} GB`;
@@ -18,5 +18,3 @@ const convertStorageUnit = ({ to, value }: Params) => {
       throw new Error("Invalid 'to' argument.");
   }
 };
-
-export default convertStorageUnit;

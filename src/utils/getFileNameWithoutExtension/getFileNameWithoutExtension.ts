@@ -11,11 +11,9 @@
  * console.log(fileNameWIthoutExtension); // "identity"
  * ```
  */
-const getFileNameWithoutExtension = (fileName: string) => {
+export const getFileNameWithoutExtension = (fileName: string) => {
   if (!fileName.includes(".")) return fileName;
 
   const [, ...name] = fileName.split(".").reverse();
   return name.reverse().join(".");
 };
-
-export default getFileNameWithoutExtension;
