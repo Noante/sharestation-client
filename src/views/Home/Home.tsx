@@ -6,7 +6,7 @@ import {
   NavigationContext,
 } from "components";
 import useDocuments from "./hooks/useDocuments";
-import PrivateTemplate from "templates/PrivateTemplate";
+import { PrivateTemplate } from "templates";
 import selectFiles from "select-files";
 
 /**

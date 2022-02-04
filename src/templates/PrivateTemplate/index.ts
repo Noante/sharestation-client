@@ -1,1 +1,1 @@
-export { default } from "./PrivateTemplate";
+export { default as PrivateTemplate } from "./PrivateTemplate";
