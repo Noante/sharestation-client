@@ -43,7 +43,7 @@ function Meter({ currentValue, max, maxLabel, minLabel }: Props) {
     to: "GB"
   });
 
-  const accessibleLabel = `resumo de armazenamento: ${formattedCurrentValue} de ${formattedMaxValue} utiliados`;
+  const accessibleLabel = `resumo de armazenamento: ${formattedCurrentValue} de ${formattedMaxValue} utilizados`;
 
   const progressBarFilling = (currentValue * 100) / max;
 
