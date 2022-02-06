@@ -1,5 +1,6 @@
 :root {
   --primary: #283048;
+  --primary-in-rgb: 40, 48, 72;
   --secondary: #5f6a77;
 
   /* Sidebar */
