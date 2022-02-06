@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Avatar from "components/Avatar";
+import { Avatar } from "components";
 import user from "__MOCK__USER";
 
 const Wrapper = styled.header`

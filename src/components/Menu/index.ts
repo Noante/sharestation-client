@@ -1,3 +1,1 @@
-export { default } from "./Menu";
-
-export { default as Item } from "./components/Item";
+export { default as Menu } from "./Menu";

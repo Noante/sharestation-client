@@ -1,1 +1,1 @@
-export { default } from "./NavigationContext";
+export { default as NavigationContext } from "./NavigationContext";

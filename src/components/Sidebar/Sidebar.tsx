@@ -1,8 +1,7 @@
-import _Divider from "components/Divider";
+import { Divider as _Divider, Menu as _Menu, Meter } from "components";
 import styled from "styled-components";
-import _Menu, { Item } from "components/Menu";
 import { version } from "../../../package.json";
-import convertStorageUnit from "utils/convertStorageUnit";
+import { convertStorageUnit } from "utils";
 import {
   Folder,
   Schedule,
@@ -10,7 +9,6 @@ import {
   Cloud,
 } from "@styled-icons/material-outlined";
 import { HOME, RECENTS, RECOVERY, STORAGE } from "router/routes";
-import Meter from "components/Meter";
 import user from "__MOCK__USER";
 
 const Divider = styled(_Divider)<{ $position?: "bottom" }>`
@@ -73,23 +71,23 @@ function Sidebar() {
       <Title>Sharestation</Title>
 
       <Menu>
-        <Item to={HOME} icon={<Folder size={20} />}>
+        <Menu.Item to={HOME} icon={<Folder size={20} />}>
           Meus arquivos
-        </Item>
-        <Item to={RECENTS} icon={<Schedule size={20} />}>
+        </Menu.Item>
+        <Menu.Item to={RECENTS} icon={<Schedule size={20} />}>
           Recentes
-        </Item>
-        <Item to={RECOVERY} icon={<Delete size={20} />}>
+        </Menu.Item>
+        <Menu.Item to={RECOVERY} icon={<Delete size={20} />}>
           Lixeira
-        </Item>
+        </Menu.Item>
       </Menu>
 
       <Divider />
 
       <StorageMenu>
-        <Item to={STORAGE} icon={<Cloud size={20} />}>
+        <Menu.Item to={STORAGE} icon={<Cloud size={20} />}>
           Armazenamento
-        </Item>
+        </Menu.Item>
       </StorageMenu>
 
       <Meter

@@ -1,1 +1,1 @@
-export { default } from "./Dividier";
+export { default as Divider } from "./Dividier";

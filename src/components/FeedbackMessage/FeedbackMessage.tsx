@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
+import EmptyFeedback from "./components/EmptyFeedback";
 
 const Message = styled.figcaption`
   max-width: 285px;
@@ -57,5 +58,7 @@ function FeedbackMessage({ message, children, illustrationSrc }: Params) {
     </Wrapper>
   );
 }
+
+FeedbackMessage.EmptyFeedback = EmptyFeedback;
 
 export default FeedbackMessage;

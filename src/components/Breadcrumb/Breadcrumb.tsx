@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
+import Crumb from "./components/Crumb";
 
 const Crumbs = styled.ol<{ $divider: string }>`
   height: 100%;
@@ -39,5 +40,7 @@ function Breadcrumb({ divider = "/", children, className }: Props) {
     </Wrapper>
   );
 }
+
+Breadcrumb.Crumb = Crumb;
 
 export default Breadcrumb;
