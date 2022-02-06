@@ -1,0 +1,10 @@
+:root {
+  --primary: #283048;
+  --secondary: #5f6a77;
+
+  /* Sidebar */
+  --sidebar-width: 280px;
+
+  /* Folder */
+  --folder-bgcolor: #626976;
+}

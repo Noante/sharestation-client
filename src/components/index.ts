@@ -10,3 +10,4 @@ export * from "./Menu";
 export * from "./Meter";
 export * from "./NavigationContext";
 export * from "./Sidebar";
+export * from "./Link";
