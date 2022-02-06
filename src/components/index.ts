@@ -8,7 +8,7 @@ export * from "./Folder";
 export * from "./Header";
 export * from "./Link";
 export * from "./Menu";
+export * from "./Progress";
 export * from "./Meter";
 export * from "./NavigationContext";
-export * from "./Progress";
 export * from "./Sidebar";
