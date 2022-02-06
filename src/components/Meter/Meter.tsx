@@ -41,7 +41,7 @@ type Props = {
 };
 
 /**
- * Component fro representing a progress between two points.
+ * Component for representing a progress between two points.
  * TODO: transform max and min labels into pseudo-elements.
  */
 function Meter({ currentValue, max, maxLabel, minLabel }: Props) {
