@@ -1,10 +1,12 @@
-import { EmptyFeedback } from "components/FeedbackMessage";
-import Button from "components/Button";
-import NavigationContext from "components/NavigationContext";
-import Folder from "components/Folder";
+import {
+  Button,
+  FeedbackMessage,
+  File,
+  Folder,
+  NavigationContext,
+} from "components";
 import useDocuments from "./hooks/useDocuments";
-import PrivateTemplate from "templates/PrivateTemplate";
-import File from "components/File";
+import { PrivateTemplate } from "templates";
 import selectFiles from "select-files";
 
 /**
@@ -23,9 +25,9 @@ function Home() {
   if (!hasDocuments)
     return (
       <PrivateTemplate>
-        <EmptyFeedback>
+        <FeedbackMessage.EmptyFeedback>
           <Button onClick={handleFileSelection}>Enviar arquivo</Button>
-        </EmptyFeedback>
+        </FeedbackMessage.EmptyFeedback>
       </PrivateTemplate>
     );
 

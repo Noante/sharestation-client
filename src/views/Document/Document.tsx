@@ -1,6 +1,5 @@
-import NavigationContext from "components/NavigationContext";
-import File from "components/File";
-import PrivateTemplate from "templates/PrivateTemplate";
+import { NavigationContext, File } from "components";
+import { PrivateTemplate } from "templates";
 
 const files = [
   { id: "uuid-00", name: "Estudos dos macacos pelados.ppt" },

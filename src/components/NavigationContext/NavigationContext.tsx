@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { ArrowBackIos } from "@styled-icons/material";
 import { product } from "../../../package.json";
 import { Cloud, Folder } from "@styled-icons/material-outlined";
-import _Breadcrumb from "components/Breadcrumb";
-import Crumb from "components/Breadcrumb/components/Crumb";
+import { Breadcrumb as _Breadcrumb } from "components";
 import { HOME } from "router/routes";
 
 const Breadcrumb = styled(_Breadcrumb)`
@@ -83,15 +82,15 @@ function NavigationContext({ title, children, goBackTo }: Props) {
       <Content>{children}</Content>
 
       <Breadcrumb divider=">">
-        <Crumb to={HOME}>
+        <Breadcrumb.Crumb to={HOME}>
           <Cloud size={20} />
           {product}
-        </Crumb>
+        </Breadcrumb.Crumb>
         {folders.map(({ id, name, to }) => (
-          <Crumb key={id} to={to}>
+          <Breadcrumb.Crumb key={id} to={to}>
             <Folder size={20} />
             {name}
-          </Crumb>
+          </Breadcrumb.Crumb>
         ))}
       </Breadcrumb>
     </Wrapper>
