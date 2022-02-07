@@ -1,16 +1,9 @@
 import styled from "styled-components";
+import { convertStorageUnit } from "utils";
+import { Progress as _Progress } from "components";
 
-const Bar = styled.meter`
-  height: 4px;
-  appearance: none;
-  background: none;
-  border-radius: 10px;
-  position: relative;
-  background-color: #fff;
-  &::-moz-meter-bar {
-    background: var(--primary);
-    border-radius: 10px;
-  }
+const Progress = styled(_Progress)`
+  margin-bottom: 3px;
 `;
 
 const Label = styled.span`
@@ -27,10 +20,6 @@ const Labels = styled.p`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  & > ${Bar} {
-    margin-bottom: 2px;
-  }
 `;
 
 type Props = {
@@ -41,16 +30,27 @@ type Props = {
 };
 
 /**
- * Component fro representing a progress between two points.
- * TODO: transform max and min labels into pseudo-elements.
+ * Component for representing a progress between two points.
  */
 function Meter({ currentValue, max, maxLabel, minLabel }: Props) {
+  const formattedMaxValue = convertStorageUnit({
+    value: max,
+    to: "GB"
+  });
+
+  const formattedCurrentValue = convertStorageUnit({
+    value: currentValue,
+    to: "GB"
+  });
+
+  const accessibleLabel = `resumo de armazenamento: ${formattedCurrentValue} de ${formattedMaxValue} utilizados`;
+
+  const progressBarFilling = (currentValue * 100) / max;
+
   return (
     <Wrapper>
-      <Bar max={max} value={currentValue}>
-        em {currentValue}/{max}
-      </Bar>
-      <Labels>
+      <Progress value={progressBarFilling} />
+      <Labels aria-label={accessibleLabel}>
         <Label>{minLabel}</Label>
         <Label>{maxLabel}</Label>
       </Labels>
