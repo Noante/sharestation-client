@@ -7,6 +7,8 @@ import { Cloud, Folder } from "@styled-icons/material-outlined";
 import { Breadcrumb as _Breadcrumb } from "components";
 import { HOME } from "router/routes";
 
+import { product } from "../../../package.json";
+
 const Breadcrumb = styled(_Breadcrumb)`
   position: sticky;
   bottom: 0;

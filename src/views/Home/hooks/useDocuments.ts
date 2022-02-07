@@ -10,12 +10,9 @@ const SOCKET_HOST: any = process.env.SOCKET_HOST || "http://localhost:3004";
  */
 function useDocuments() {
 	const [socket, setSocket] = useState<any>();
-
     const [token, setToken] = useState<string>("");
 	const [users, setUsers] = useState([]);
-    const [host, setHost] = useState<any>({
-		username: "clientNode1"
-	});
+    const [host, setHost] = useState<any>({ username: "clientNode1" });
     const [documents, setDocuments] = useState([]);
     
     useEffect(() => {
@@ -27,6 +24,12 @@ function useDocuments() {
         }).catch((error) => {
             console.error("An error has occurred on fetch auth API");
             console.error(error);
+            const docs: any = Array.from({ length: 35 }, (_, index) => ({
+                id: `${index}`,
+                name: `Folder ${index + 1}`,
+                isFolder: true,
+            }));
+            setDocuments(docs);
         })
     }, [])
 
@@ -100,7 +103,6 @@ function useDocuments() {
                 a.download = data.filename;
                 a.click();
             }
-            console.log(data);
         });
     }
 
@@ -116,22 +118,16 @@ function useDocuments() {
 	const loading = false;
 	const hasDocuments = true;
 
-//   const documents = Array.from({ length: 35 }, (_, index) => ({
-//     id: `${index}`,
-//     name: `Folder ${index + 1}`,
-//     isFolder: true,
-//   }));
-
-  return {
-    loading,
-    hasDocuments,
-	documents,
-	loadFiles,
-    loadUsers,
-    listDir,
-	loadDownloadedFile,
-	handleDownload
-  };
+    return {
+        loading,
+        hasDocuments,
+        documents,
+        loadFiles,
+        loadUsers,
+        listDir,
+        loadDownloadedFile,
+        handleDownload
+    };
 }
 
 export default useDocuments;

@@ -29,7 +29,6 @@ function Home() {
     );
 
   return (
-    <PrivateTemplate>
       <NavigationContext title="Meus arquivos" listDir={listDir}>
         {documents.map(({ id, name, isFolder }) =>
           isFolder ? (
@@ -41,7 +40,6 @@ function Home() {
           )
         )}
       </NavigationContext>
-    </PrivateTemplate>
   );
 }
 

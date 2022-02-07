@@ -1,12 +1,14 @@
 FROM node:14
 WORKDIR /app
 
-COPY sharestation-client/package*.json ./
-COPY sharestation-client/. .
+COPY package*.json ./
+COPY . .
 
 ENV SOCKET_HOST=http://socket-service:3004
 
-RUN npm install
+RUN npm install && \
+    npm install -g serve && \
+    npm run build
 
 EXPOSE 3000
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["serve", "-s", "build"]
