@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
 
-const SOCKET_HOST: any = process.env.SOCKET_HOST || "http://18.191.189.22:3004";
+const SOCKET_HOST: any = process.env.SOCKET_HOST || "http://13.59.130.193:3004";
 
 /**
  *
@@ -16,7 +16,7 @@ function useDocuments() {
     const [documents, setDocuments] = useState([]);
     
     useEffect(() => {
-        axios.post("http://18.224.1.64:3000/api/auth", {
+        axios.post("http://3.129.62.138:3000/api/auth", {
             email: "teste@mail.com",
             password: "12345678"
         }).then((response) => {
