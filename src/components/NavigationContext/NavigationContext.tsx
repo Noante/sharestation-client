@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
 import { Link as _Link } from "react-router-dom";
 import styled from "styled-components";
-import { ArrowBackIos } from "@styled-icons/material";
-import { product } from "../../../package.json";
+
+import { ArrowBackIos, Refresh } from "@styled-icons/material";
 import { Cloud, Folder } from "@styled-icons/material-outlined";
 import { Breadcrumb as _Breadcrumb } from "components";
 import { HOME } from "router/routes";
+
+import { product } from "../../../package.json";
 
 const Breadcrumb = styled(_Breadcrumb)`
   position: sticky;
@@ -52,10 +54,18 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
+const ActionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+`;
+
 type Props = {
   title: string;
   children: ReactNode;
   goBackTo?: string;
+  listDir?: any;
 };
 
 const folders = [
@@ -68,7 +78,7 @@ const folders = [
  * Component for displaying the available documents while allowing to browse
  * between them using a breadcrumb.
  */
-function NavigationContext({ title, children, goBackTo }: Props) {
+function NavigationContext({ title, children, goBackTo, listDir }: Props) {
   return (
     <Wrapper>
       <Header>
@@ -76,7 +86,10 @@ function NavigationContext({ title, children, goBackTo }: Props) {
           <ArrowBackIos size={24} />
         </Link>
         <Title>{title}</Title>
-        <span>filter by</span>
+        <ActionContainer>
+            <Refresh size={20} onClick={listDir}></Refresh>
+            {/* <span>filter by</span> */}
+        </ActionContainer>
       </Header>
 
       <Content>{children}</Content>

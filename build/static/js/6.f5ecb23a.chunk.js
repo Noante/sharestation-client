@@ -1,0 +1,2 @@
+(this["webpackJsonpsharestation-client"]=this["webpackJsonpsharestation-client"]||[]).push([[6],{162:function(t,a,i){"use strict";i.r(a),i.d(a,"default",(function(){return c}));var n=i(19),s=i(8),e=i.p+"static/media/taken_illustration.9c1d5132.svg",r=i(1);var c=function(){return Object(r.jsx)(n.e,{illustrationSrc:e,message:"Oops... N\xe3o h\xe1 nada aqui.",children:Object(r.jsx)(n.i,{to:s.b,as:"button",children:"ir para a home"})})}}}]);
+//# sourceMappingURL=6.f5ecb23a.chunk.js.map

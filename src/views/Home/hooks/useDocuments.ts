@@ -1,68 +1,133 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import axios from "axios";
 
-// const socket = io(
-//   "http://ec2-18-117-165-1.us-east-2.compute.amazonaws.com:3004",
-//   {
-//     reconnection: true,
-//   }
-// );
-
-// socket.auth = { username: "xguhkaa" };
-
-// const [documents, setDocuments] = useState([]);
-//   const [users, setUsers] = useState<
-//     Record<"username" | "userID", string>[] | null
-//   >(null);
-
-//   useEffect(() => {
-//     socket.on("user:listUsers", (users) => {
-//       setUsers(users);
-//     });
-//   }, []);
-
-//   useEffect(() => {
-//     if (users) {
-//       socket.emit("host:listDir", {
-//         path: "/Users/caiomorais/Documents/Teste2/",
-//         to: users[1].userID ?? "",
-//       });
-//     }
-//   }, [users]);
-
-//   useEffect(() => {
-//     socket.on("client:listDir", (documents) => {
-//       setDocuments(
-//         // @ts-ignore
-//         documents.message.map(({ isDir, name }, id) => ({
-//           isFolder: isDir,
-//           id,
-//           name,
-//         }))
-//       );
-//     });
-//   }, []);
+const SOCKET_HOST: any = process.env.SOCKET_HOST || "http://13.59.130.193:3004";
 
 /**
  *
  * @returns
  */
 function useDocuments() {
-  const loading = false;
+    const [socket, setSocket] = useState<any>();
+    const [token, setToken] = useState<string>("");
+    const [users, setUsers] = useState([]);
+    const [host, setHost] = useState<any>({ username: "clientNode1" });
+    const [documents, setDocuments] = useState([]);
+    
+    useEffect(() => {
+        axios.post("http://3.129.62.138:3000/api/auth", {
+            email: "teste@mail.com",
+            password: "12345678"
+        }).then((response) => {
+            setToken(response.data.token);
+        }).catch((error) => {
+            console.error("An error has occurred on fetch auth API");
+            console.error(error);
+            const docs: any = Array.from({ length: 35 }, (_, index) => ({
+                id: `${index}`,
+                name: `Folder ${index + 1}`,
+                isFolder: true,
+            }));
+            setDocuments(docs);
+        })
+    }, [])
 
-  const hasDocuments = true;
+    useEffect(() => {
+        token && setSocket(io(SOCKET_HOST, {
+            reconnection: true,
+            auth: {
+                token: token,
+                username: "reactApp",
+                type: "client"
+            }
+        }))
+    }, [token])
 
-  const documents = Array.from({ length: 35 }, (_, index) => ({
-    id: `${index}`,
-    name: `Folder ${index + 1}`,
-    isFolder: true,
-  }));
+	useEffect(() => {		
+		if(socket && Object.keys(socket).length > 0){
+            loadFiles();
+            loadUsers();
+            loadDownloadedFile();
 
-  return {
-    loading,
-    hasDocuments,
-    documents,
-  };
+            socket.emit("server:listHosts", {
+                hosts: [
+                    "clientNode1",
+                    "clientNode2"
+                ]
+            });
+		}
+    }, [socket]);
+
+	useEffect(() => {
+		socket && host && listDir()
+    }, [host]);
+
+    const listDir = () => {
+        socket.emit("host:listDir", {
+			path: "/Users/caiomorais/Documents/Teste2/",
+			from: socket.id,
+			to: host.userID
+		});
+    }
+	
+	const loadFiles = () => {
+		socket.on("client:listDir", (data: any)=>{
+			const documentsList = data.message.map((message: any, i: number) => ({
+				id: `${i}`,
+				name: message.name,
+				isFolder: message.isDir
+            }));
+			setDocuments(documentsList);
+		})
+	}
+    
+    const loadUsers = () => {
+		socket.on("client:listHosts", (users: any) => {
+            if(users.length > 0)
+				setHost(users[0])
+            setUsers(users);
+        });
+    }
+
+    const loadDownloadedFile = () => {
+        const chunks: any = [];
+		socket.on("client:downloadFile", (data: any) => {
+            if(data.status === "in_progress"){
+                chunks.push(data.chunk);
+            } else {
+                const blob = new Blob(chunks, {type: data.type});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = data.filename;
+                a.click();
+            }
+        });
+    }
+
+    const handleDownload = (document: any) => {
+		socket.emit("host:downloadFile", {
+            path: "/Users/caiomorais/Documents/Teste2/",
+            filename: document.name,
+            from: socket.id,
+            to: host.userID
+        });
+    }
+
+	const loading = false;
+	const hasDocuments = true;
+
+    return {
+        loading,
+        hasDocuments,
+        documents,
+        loadFiles,
+        loadUsers,
+        listDir,
+        loadDownloadedFile,
+        handleDownload
+    };
 }
 
 export default useDocuments;

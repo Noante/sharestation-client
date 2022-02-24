@@ -12,6 +12,7 @@ import { StyledIconBase } from "@styled-icons/styled-icon";
 
 const Backdrop = styled.figure`
   position: relative;
+  cursor: pointer;
   text-align: center;
   display: flex;
   width: 96px;
@@ -52,6 +53,7 @@ function File({ name }: Props) {
     ppt: <Slideshow />,
     mp4: <Movie />,
     jpg: <Image />,
+    jpeg: <Image />,
     png: <Image />,
     other: <MoreHoriz />,
   }[getFileExtension(name) ?? "other"];
